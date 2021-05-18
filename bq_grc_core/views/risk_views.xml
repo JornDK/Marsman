@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Actions -->
+    <record id="risk_action" model="ir.actions.act_window">
+        <field name="name">Risks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.risk</field>
+        <field name="view_mode">tree,kanban,form,calendar,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new risk
+            </p>
+        </field>
+    </record>
+    <record id="risk_as_action" model="ir.actions.act_window">
+        <field name="name">Risks Assessments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.risk.assessment</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new risk assessment
+            </p>
+        </field>
+    </record>
+    <record id="threat_action" model="ir.actions.act_window">
+        <field name="name">Threats</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.risk.threat</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Risk threat handling.
+            </p>
+        </field>
+    </record>
+    <record id="vulnerability_action" model="ir.actions.act_window">
+        <field name="name">Vulnerabilities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.risk.vulnerability</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Risk vulnerability handling.
+            </p>
+        </field>
+    </record>
+    <record id="risk_type_action" model="ir.actions.act_window">
+        <field name="name">Risk types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.risk.type</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Risk type handling.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_risks_list" name="Risks" parent="main_risks_menu" action="risk_action" sequence="10"/>
+    <menuitem id="menu_risks_as_list" name="Assessments" parent="main_risks_menu" action="risk_as_action" sequence="20"/>
+
+    <menuitem id="menu_risks_configuration" name="Risks" parent="main_configuration_menu">
+        <menuitem id="menu_risks_threats" name="Threats" action="threat_action"/>
+        <menuitem id="menu_risks_vulnerabilities" name="Vulnerabilities" action="vulnerability_action"/>
+    </menuitem>
+
+    <record id="risk_form" model="ir.ui.view">
+        <field name="name">grc.risk.form</field>
+        <field name="model">grc.risk</field>
+        <field name="arch" type="xml">
+            <form string="Risks">
+                <header>
+                    <button class="oe_highlight" name="action_publish" states='draft' type="object"
+                            string="Publish"/>
+                    <button class="" name="action_draft" states="published,archived" type="object" string="Draft"/>
+                    <button class="" name="action_archive" states="published" type="object" string="Archive"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active" readonly="1"></field>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="get_link_to_records"
+                                context="{'link' : 'control'}" icon="fa-tasks">
+                            <field string="Controls" name="control_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="get_link_to_records"
+                                context="{'link' : 'policy'}" icon="fa-tasks">
+                            <field string="Policies" name="policy_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="get_link_to_records"
+                                context="{'link' : 'asset'}" icon="fa-tasks">
+                            <field string="Assets" name="asset_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('state', '!=', 'archived')]}"/>
+                    <widget name="web_ribbon" title="Published" bg_color="bg-success" attrs="{'invisible': [('state', '!=', 'published')]}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name_sequence"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="risk_type_id"/>
+                            <field name="state" invisible="1"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="threat_id" widget="many2many_tags"/>
+                            <field name="vulnerability_id" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </group>
+                        <group>
+                            <field name="review_date"/>
+                            <field name="treatment"/>
+                        </group>
+                        <group>
+                            <field name="owner_id" domain="[('is_company', '=', False)]"/>
+                        </group>
+                        <group>
+                            <field name="score" decoration-bf="True" decoration-danger="score &gt; 6"
+                                   decoration-warning="(score &gt; 3) and (score &lt;=6)"
+                                   decoration-success="(score &lt;= 3)" widget="badge"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <field name="note" widget="html"/>
+                            </group>
+                        </page>
+                        <page string="Scenario">
+                            <group>
+                                <field name="scenario" widget="html"/>
+                            </group>
+                        </page>
+                        <page string="Consequences">
+                            <group>
+                                <field name="consequences" widget="html"/>
+                            </group>
+                        </page>
+
+                        <page string="Assessments">
+                            <group>
+                                <tree>
+                                    <field name="assessment_id"/>
+                                </tree>
+                            </group>
+                        </page>
+                        <page string="Controls">
+                            <group>
+                                <tree><field name="control_ids"/></tree>
+                            </group>
+                        </page>
+                        <page string="Policies">
+                            <group>
+                                <tree><field name="policy_ids"/></tree>
+                            </group>
+                        </page>
+                        <page string="Assets">
+                            <group>
+                                <tree><field name="asset_ids"/></tree>
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <!--                    <field name="activity_ids" widget="mail_activity"/>-->
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="risk_list_view" model="ir.ui.view">
+        <field name="name">grc.risk.list</field>
+        <field name="model">grc.risk</field>
+        <field name="arch" type="xml">
+            <tree string="risk List">
+                <field name="name_sequence"/>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="tag_ids" widget="many2many_tags"
+                       options="{'color_field': 'color', 'no_create_edit': True}"/>
+                <field name="risk_type_id"/>
+                <field name="treatment" optional="hide"/>
+                <field name="score" decoration-bf="True" decoration-danger="score &gt; 6"
+                       decoration-warning="(score &gt; 3) and (score &lt;=6)" decoration-success="(score &lt;= 3)"
+                       widget="badge"/>
+                <field name="review_date"/>
+                <field name="threat_id" widget="many2many_tags" options="{'color_field': 'color'}" optional="hide"/>
+                <field name="vulnerability_id" widget="many2many_tags" optional="hide"/>
+                <field name="owner_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- calendar view -->
+    <record model="ir.ui.view" id="risk_calendar_view">
+        <field name="name">grc.risk.calendar</field>
+        <field name="model">grc.risk</field>
+        <field name="arch" type="xml">
+            <calendar string="Risk Review Calendar" date_start="review_date" all_day="all_day">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Search and filters -->
+    <record model="ir.ui.view" id="risk_search_view">
+        <field name="name">grc.risk.search</field>
+        <field name="model">grc.risk</field>
+        <field name="arch" type="xml">
+            <search string="Risks">
+                <field name="owner_id"/>
+                <field name="partner_id"/>
+                <field name="tag_ids"/>
+                <group expand="0" string="Group By">
+                    <!--                    <filter string="Threat" name="threat" context="{'group_by':'threat_id'}" help="Score"/>
+                                        <filter string="Vulnerability" name="threat" context="{'group_by':'vulnerability_id'}" help="Score"/>-->
+                    <filter string="Score" name="score" context="{'group_by':'score'}" help="Score"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="risk_search_view_state">
+        <field name="name">grc.risk.search.state</field>
+        <field name="model">grc.risk</field>
+        <field name="arch" type="xml">
+            <search string="Risk by status">
+                <field name="state"/>
+                <filter string="Drafts" name="state" domain="[('state', '=', 'draft')]"/>
+                <filter string="Published" name="state" domain="[('state', '=', 'published')]"/>
+                <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="risk_graph_view">
+        <field name="name">grc.risk.graph</field>
+        <field name="model">grc.risk</field>
+        <field name="arch" type="xml">
+            <graph string="Risks by score">
+                <field name="score"/>
+            </graph>
+        </field>
+    </record>
+
+
+</odoo>

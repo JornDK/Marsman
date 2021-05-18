@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+        <record id="seq_grc_risk" model="ir.sequence">
+            <field name="name">Risk sequence</field>
+            <field name="code">grc.risk.sequence</field>
+            <field name="prefix">RSK</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"></field>
+        </record>
+</odoo>

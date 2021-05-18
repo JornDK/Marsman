@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Actions -->
+    <record id="control_action" model="ir.actions.act_window">
+        <field name="name">Controls</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.control</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new control.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="controls_menu"
+              name="Controls"
+              parent="main_controls_menu"
+              action="control_action"
+              sequence="20"/>
+
+    <record id="control_form" model="ir.ui.view">
+        <field name="name">grc.control.form</field>
+        <field name="model">grc.control</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button class="oe_highlight" name="action_activate" states='draft,inactive' type="object"
+                            string="Activate"/>
+                    <button class="" name="action_draft" states="active, inactive" type="object" string="Draft"/>
+                    <button class="" name="action_inactivate" states="active" type="object" string="Inactivate"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active" readonly="1"></field>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="get_link_to_records"
+                                context="{'link' : 'risk'}" icon="fa-tasks">
+                            <field string="Risks" name="risk_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="get_link_to_records"
+                                context="{'link' : 'asset'}" icon="fa-tasks">
+                            <field string="Assets" name="asset_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name_sequence"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="control_type_id"/>
+                        </group>
+                        <group>
+                            <field name="review_date"/>
+                            <field name="owner_id" domain="[('is_company', '=', False)]"/>
+                            <field name="responsible_id" domain="[('is_company', '=', False)]"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" widget="html">
+                            </field>
+                        </page>
+                        <page string="Objective">
+                            <field name="objective" widget="html">
+                            </field>
+                        </page>
+                        <page string="Risks">
+                            <field name="risk_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="score"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Assets">
+                            <field name="asset_ids">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <!--                    <field name="activity_ids" widget="mail_activity"/>-->
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- List view -->
+    <record id="control_list_view" model="ir.ui.view">
+        <field name="name">grc.control.list</field>
+        <field name="model">grc.control</field>
+        <field name="arch" type="xml">
+            <tree string="control List">
+                <field name="name_sequence" />
+                <field name="name"/>
+                <field name="control_type_id"/>
+                <field name="review_date"/>
+                <field name="objective" widget="html"/>
+                <field name="owner_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- calendar view -->
+    <record model="ir.ui.view" id="control_calendar_view">
+        <field name="name">grc.control.calendar</field>
+        <field name="model">grc.control</field>
+        <field name="arch" type="xml">
+            <calendar string="control Review Calendar" date_start="review_date" all_day="all_day">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+</odoo>

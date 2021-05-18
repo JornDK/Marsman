@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_grc_risk_control,grc_control_group,model_grc_control,,1,1,1,1
+access_grc_risk_control_type,grc_control_type_group,model_grc_control_type,,1,1,1,1
+access_grc_risk_risk,grc_risk_group,model_grc_risk,,1,1,1,1
+access_grc_risk_risk_type,grc_risk_type_group,model_grc_risk_type,,1,1,1,1
+access_grc_risk_risk_likelihood,grc_risk_likelihood_group,model_grc_risk_likelihood,,1,1,1,1
+access_grc_risk_risk_severity,grc_risk_severity_group,model_grc_risk_severity,,1,1,1,1
+access_grc_risk_risk_threat,grc_risk_threat_group,model_grc_risk_threat,,1,1,1,1
+access_grc_risk_risk_vulnerability,grc_risk_vulnerability_group,model_grc_risk_vulnerability,,1,1,1,1
+access_grc_risk_policy,grc_policy_group,model_grc_policy,,1,1,1,1
+access_grc_risk_tag,grc_risk_tag_group,model_grc_risk_tag,,1,1,1,1
+access_grc_risk_assessment,grc_risk_assessment_group,model_grc_risk_assessment,,1,1,1,1
+access_grc_asset,grc_asset_group,model_grc_asset,,1,1,1,1
+access_grc_asset_type,grc_asset_type_group,model_grc_asset_type,,1,1,1,1
