@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu actions -->
+    <record id="asset_types_configuration" model="ir.actions.act_window">
+        <field name="name">Asset types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.asset.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Handle asset types.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu items -->
+    <menuitem id="asset_types_menu"
+              name="Asset Types"
+              parent="main_configuration_menu"
+              action="asset_types_configuration"
+              sequence="5"/>
+
+    <!-- Asset Type List view -->
+    <record id="asset_type_list_view" model="ir.ui.view">
+        <field name="name">grc.asset.type.list</field>
+        <field name="model">grc.asset.type</field>
+        <field name="arch" type="xml">
+            <tree string="Asset Type List" editable="bottom">
+                <field name="name"/>
+                <field name="id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="asset_type_form" model="ir.ui.view">
+        <field name="name">grc.asset.type.form</field>
+        <field name="model">grc.asset.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

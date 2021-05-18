@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Project view -->
+    <record model="ir.ui.view" id="grc_project_form">
+        <field name="name">project.risk</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Risks">
+                    <group>
+                        <field name="risk_ids" string="Risks" readonly="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="score"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Task view -->
+    <record model="ir.ui.view" id="grc_project_task_form_inherit">
+        <field name="name">project.task.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <page name="recurrence" position="after" >
+                <page name="grc_fields" string="GRC fields">
+                    <group>
+                        <field name="risk_id" />
+                        <field name="control_id"/>
+                        <field name="policy_id"/>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

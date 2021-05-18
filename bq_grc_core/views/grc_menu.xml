@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="main_grc_menu"
+              name="GRC"/>
+
+    <menuitem id="main_controls_menu"
+              name="Controls"
+              parent="main_grc_menu"
+              sequence="20"/>
+
+    <menuitem id="main_risks_menu"
+              name="Risks"
+              parent="main_grc_menu"
+              sequence="10"/>
+
+    <menuitem id="main_configuration_menu"
+              name="Configuration"
+              parent="main_grc_menu"
+              sequence="60"/>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu actions -->
+    <record id="risk_types_configuration" model="ir.actions.act_window">
+        <field name="name">risk types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grc.risk.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Handle risk types.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu items -->
+    <menuitem id="risk_types_menu"
+              name="Risk Types"
+              parent="menu_risks_configuration"
+              action="risk_types_configuration"
+              sequence="5"/>
+
+    <!-- Risk Type List view -->
+    <record id="risk_type_list_view" model="ir.ui.view">
+        <field name="name">grc.risk.type.list</field>
+        <field name="model">grc.risk.type</field>
+        <field name="arch" type="xml">
+            <tree string="control Type List" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="risk_type_form" model="ir.ui.view">
+        <field name="name">grc.risk.type.form</field>
+        <field name="model">grc.risk.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

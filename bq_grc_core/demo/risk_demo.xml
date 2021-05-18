@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Tags -->
+        <record id="risk_tags_00" model="grc.risk.tag">
+            <field name="name">Top risk</field>
+        </record>
+
+        <record id="control_type_00" model="grc.control.type">
+            <field name="name">Internal</field>
+        </record>
+
+        <record id="control_00" model="grc.control">
+            <field name="name">Password management</field>
+            <field name="control_type_id" ref="control_type_00"></field>
+        </record>
+        <!-- Policies -->
+
+        <!-- Risks -->
+        <record id="risk_1" model="grc.risk">
+            <field name="review_date" eval="(datetime.now() + relativedelta(day=5, months=1)).strftime('%Y-%m-%d')"/>
+            <field name="name">Disclosure of passwords</field>
+            <field name="color">3</field>
+            <field name="risk_type_id">1</field>
+            <field name="note">Description of disclosure of passwords risk.</field>
+            <field name="treatment">mitigate</field>
+            <field name="scenario">User saves passwords in clear text on an intranet page.</field>
+            <field name="consequences">Account breach.</field>
+            <field name="tag_ids" eval="[(6, 0, [ref('risk_tags_00')])]"/>
+            <field name="control_ids" eval="[(6, 0, [ref('control_00')])]"/>
+        </record>
+        <record id="risk_2" model="grc.risk">
+            <field name="review_date" eval="(datetime.now() + relativedelta(day=5, months=1)).strftime('%Y-%m-%d')"/>
+            <field name="name">Maintenance error</field>
+            <field name="color">3</field>
+            <field name="risk_type_id">1</field>
+            <field name="note">Introduce weaknesses into during routine maintenance</field>
+            <field name="treatment">mitigate</field>
+            <field name="scenario"></field>
+            <field name="consequences"></field>
+            <field name="tag_ids" eval="[(6, 0, [ref('risk_tags_00')])]"/>
+        </record>
+        <record id="risk_3" model="grc.risk">
+            <field name="review_date"
+                   eval="(datetime.now() + relativedelta(day=5, months=1)).strftime('%Y-%m-%d')"></field>
+            <field name="name">Theft</field>
+            <field name="color">2</field>
+            <field name="risk_type_id">1</field>
+            <field name="note">Theft of equipment and information.</field>
+            <field name="treatment">mitigate</field>
+            <field name="scenario">Laptops stolen.</field>
+            <field name="consequences"></field>
+        </record>
+
+    </data>
+</odoo>

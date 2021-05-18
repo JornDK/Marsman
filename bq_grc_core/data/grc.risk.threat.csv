@@ -1,0 +1,48 @@
+"id","name"
+threat01,Access to the network by unauthorized persons
+threat02,Bomb attack
+threat03,Bomb threat
+threat04,Breach of contractual relations
+threat05,Breach of legislation
+threat06,Compromising confidential information
+threat07,Concealing user identity
+threat08,Damage caused by a third party
+threat09,Damages resulting from penetration testing
+threat10,Destruction of records
+threat11,Disaster (human caused)
+threat12,Disaster (natural)
+threat13,Disclosure of information
+threat14,Disclosure of passwords
+threat15,Eavesdropping
+threat16,Embezzlement
+threat17,Errors in maintenance
+threat18,Failure of communication links
+threat19,Falsification of records
+threat20,Fire
+threat21,Flood
+threat22,Fraud
+threat23,Industrial espionage
+threat24,Information leakage
+threat25,Interruption of business processes
+threat26,Loss of electricity
+threat27,Loss of support services
+threat28,Malfunction of equipment
+threat29,Malicious code
+threat30,Misuse of information systems
+threat31,Misuse of audit tools
+threat32,Pollution
+threat33,Social engineering
+threat34,Software errors
+threat35,Strike
+threat36,Terrorist attacks
+threat37,Theft
+threat38,Thunderstroke
+threat39,Unintentional change of data in an information system
+threat40,Unauthorized access to the information system
+threat41,Unauthorized changes of records
+threat42,Unauthorized installation of software
+threat43,Unauthorized physical access
+threat44,Unauthorized use of copyright material
+threat45,Unauthorized use of software
+threat46,User error
+threat47,Vandalism

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu items -->
+
+    <record id="risk_assessment_form" model="ir.ui.view">
+        <field name="name">grc.risk.assessment.form</field>
+        <field name="model">grc.risk.assessment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                            <field name="assessment_date"/>
+                            <label for="assessment_period"/>
+                            <div>
+                                <field name="assessment_year" class="oe_inline" width="20%%"/>
+                                <field name="assessment_year_extra" class="oe_inline"/>
+                                <field name="assessment_period" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="likelihood_id"/>
+                            <field name="severity_id"/>
+                            <field name="impact_type"/>
+                        </group>
+                        <group>
+                            <field name="score" decoration-bf="True" decoration-danger="score &gt; 6"
+                                   decoration-warning="(score &gt; 3) and (score &lt;=6)"
+                                   decoration-success="(score &lt;= 3)"
+                                   widget="badge"/>
+                        </group>
+                        <group>
+                            <field name="risk_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- List view -->
+    <record id="risk_assessment_list_view" model="ir.ui.view">
+        <field name="name">grc.risk.assessment.list</field>
+        <field name="model">grc.risk.assessment</field>
+        <field name="arch" type="xml">
+            <tree string="risk assessmentList" delete="false">
+                <field name="responsible_id"></field>
+                <field name="likelihood_id"/>
+                <field name="severity_id"/>
+                <field name="impact_type" />
+                <field name="score" decoration-bf="True" decoration-danger="score &gt; 6"
+                       decoration-warning="(score &gt; 3) and (score &lt;=6)" decoration-success="(score &lt;= 3)"
+                       widget="badge"/>
+                <field name="assessment_date"/>
+                <field name="assessment_period"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
