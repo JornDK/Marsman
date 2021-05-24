@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'BQ Core GRC Management',
-    'version': '14.0.1.0.0',
+    'version': '14.0.1.0.1',
     'summary': 'Core GRC management module',
     'price': 99,
     'currency': 'EUR',
