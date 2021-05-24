@@ -60,7 +60,7 @@
                     </group>
                     <notebook>
                         <page string="Description">
-                            <field name="description" widget="html">
+                            <field name="note" widget="html">
                             </field>
                         </page>
                         <page string="Objective">

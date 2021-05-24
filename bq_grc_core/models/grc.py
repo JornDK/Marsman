@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 
 class Grc(models.AbstractModel):
     _name = "grc.grc"
+    _description="Abstract model for the different GRC models"
 
     view_relations = {}
     single_id_name = ''

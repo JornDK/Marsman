@@ -3,6 +3,7 @@ access_grc_risk_control,grc_control_group,model_grc_control,,1,1,1,1
 access_grc_risk_control_type,grc_control_type_group,model_grc_control_type,,1,1,1,1
 access_grc_risk_risk,grc_risk_group,model_grc_risk,,1,1,1,1
 access_grc_risk_risk_type,grc_risk_type_group,model_grc_risk_type,,1,1,1,1
+access_grc_risk_risk_set,grc_risk_set_group,model_grc_risk_set,,1,1,1,1
 access_grc_risk_risk_likelihood,grc_risk_likelihood_group,model_grc_risk_likelihood,,1,1,1,1
 access_grc_risk_risk_severity,grc_risk_severity_group,model_grc_risk_severity,,1,1,1,1
 access_grc_risk_risk_threat,grc_risk_threat_group,model_grc_risk_threat,,1,1,1,1
