@@ -21,6 +21,7 @@
         'views/risk_type_views.xml',
         'views/risk_assessment_views.xml',
         'views/policy_views.xml',
+        'views/assets.xml',
         'views/asset_views.xml',
         'views/asset_type_views.xml',
         'security/ir.model.access.csv',

@@ -9,6 +9,7 @@ class GrcControlType(models.Model):
     _name = "grc.control.type"
     _description = "Control Type"
     _order = 'id'
+    _inherit = ['mail.thread']
     name = fields.Char('Control Type', required=True, tracking=True)
 
 
@@ -30,7 +31,6 @@ class GrcControl(models.Model):
         tracking=True)
 
     objective =fields.Text(string='Control objective')
-    description = fields.Text(string='Description')
     review_date = fields.Date(string="Review date", tracking=True)
     all_day = fields.Boolean(invisible=True, readonly=True, default=True)
     owner_id = fields.Many2one('res.partner', string="Owner", tracking=True)

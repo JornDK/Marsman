@@ -11,12 +11,14 @@ class GrcRiskType(models.Model):
     _name = "grc.risk.type"
     _description = "Risk Type"
     _order = 'id'
+    _inherit = ['mail.thread']
     name = fields.Char('Risk Type', required=True, tracking=True)
 
 class GrcRiskLikelihood(models.Model):
     _name = "grc.risk.likelihood"
     _description = "Risk likelihood"
     _order = 'id'
+    _inherit = ['mail.thread']
     name = fields.Char('Likelihood', required=True, tracking=True)
     value = fields.Integer('Value', required=True)
     note = fields.Text('Description')
@@ -25,6 +27,7 @@ class GrcRiskSeverity(models.Model):
     _name = "grc.risk.severity"
     _description = "Risk severity"
     _order = 'id'
+    _inherit = ['mail.thread']
     name = fields.Char('Likelihood', required=True, tracking=True)
     value = fields.Integer('Value', required=True)
     note = fields.Text('Description')
@@ -55,6 +58,7 @@ class GrcRiskSet(models.Model):
 class GrcRiskAssessment(models.Model):
     _name = "grc.risk.assessment"
     _description = 'Risk assessment'
+    _inherit = ['mail.thread']
     name=fields.Char('Name', required=True)
     assessment_date = fields.Date(string='Assessment date', required=True)
     assessment_year = fields.Integer(string='Year',default=2020)
@@ -133,7 +137,7 @@ class GrcRisk(models.Model):
     color = fields.Char("Color", default="green")
 
     ## Links to other concepts:
-    assessment_id = fields.One2many('grc.risk.assessment','risk_id',string="Assessments", ondelete="cascade" ,tracking=True)
+    assessment_id = fields.One2many('grc.risk.assessment','risk_id',string="Assessments", tracking=True)
     control_ids = fields.Many2many('grc.control',string="Control", tracking=True)
     policy_ids = fields.Many2many('grc.policy',string="Policies")
     asset_ids = fields.Many2many('grc.asset', string="Assets")

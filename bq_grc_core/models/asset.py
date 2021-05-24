@@ -8,7 +8,7 @@ class GrcAssetType(models.Model):
     _name = "grc.asset.type"
     _description = "Asset Type"
     _order = 'id'
-
+    _inherit = ['mail.thread']
     name = fields.Char('Asset Type', required=True, tracking=True)
 
 
